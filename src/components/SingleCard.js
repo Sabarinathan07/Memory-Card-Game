@@ -1,20 +1,25 @@
-import './SingleCard.css'
+import './SingleCard.css';
 
-const SingleCard = ({ card, handleChoice}) => {
-
+const SingleCard = ({ card, handleChoice, flipped, disabled}) => {
     const handleClick = () => {
-        handleChoice(card);
-    }
+        if (!disabled) {
+            handleChoice(card);
+        }
+	};
 
-    return (
-        <div className='card'>
-            <div>
-              <img src={card.src} alt="card front" className="front" />
-              <img onClick={handleClick} src="/img/cover.png" alt="card back" className="back"/>
-            </div>
-            
-        </div>
-    )
-}
+	return (
+		<div className='card'>
+			<div className={flipped ? 'flipped' : ''}>
+				<img src={card.src} alt='card front' className='front' />
+				<img
+					onClick={handleClick}
+					src='/img/cover.png'
+					alt='card back'
+					className='back'
+				/>
+			</div>
+		</div>
+	);
+};
 
-export default SingleCard
+export default SingleCard;
